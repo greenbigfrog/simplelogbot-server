@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  user_id: 1
+  bot: false
+  avatar_id: MyString
+  discriminator: 1
+
+two:
+  username: MyString
+  user_id: 1
+  bot: false
+  avatar_id: MyString
+  discriminator: 1
