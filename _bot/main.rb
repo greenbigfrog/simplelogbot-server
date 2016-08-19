@@ -42,6 +42,7 @@ end
 # Channel Events
 # Fired when a channel gets created
 bot.channel_create do |event|
+  history = event.channel.history(50)
   puts "a channel got created"
 end
 
@@ -59,6 +60,7 @@ end
 # Fired when a Server gets created (Bot gets added to a server)
 bot.server_create do |event|
   puts "Server got created"
+  event.server.owner.pm "Someone added me to this server. All messages I can view I'm logging to INSERT HERE (TODO)"
 end
 
 # Fired when a Server gets updated
@@ -68,18 +70,22 @@ end
 
 # Fired when a Server gets deleted (Bot gets removed)
 bot.server_delete do |event|
-  puts "Server got deleted"
+  event.server.owner.pm "Your recent messages will stay saved. Need to add a way for you to automatically delete them (TODO)"
 end
 
 # Member events
 # Fired when a User joins a Server
 bot.member_join do |event|
-  puts "User joined server"
+  event.user.pm "Messages on this server are getting logged to INSERT HERE (TODO)"
 end
 
 # Fired when a User leaves Server
 bot.member_leave do |event|
-  puts "User left server"
+  begin
+    event.user.pm "Please be aware that your messages will stay saved."
+  rescue
+    puts "Can't dm #{event.user.id}, no permission error"
+  end
 end
 
 
