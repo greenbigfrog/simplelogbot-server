@@ -70,7 +70,7 @@ end
 
 # Fired when a Server gets deleted (Bot gets removed)
 bot.server_delete do |event|
-  event.server.owner.pm "Your recent messages will stay saved. Need to add a way for you to automatically delete them (TODO)"
+  puts "Server got deleted"
 end
 
 # Member events
