@@ -1,3 +1,21 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope '/api' do
+    scope '/v1' do
+      scope '/servers' do
+        # CRUD
+        scope '/channels' do
+          # CRUD
+          scope '/messages' do
+            # CRUD
+          end
+        end
+      end
+      scope '/users' do
+        # CRUD
+        scope '/memberships' do
+          # CRUD
+        end
+      end
+    end
+  end
 end
