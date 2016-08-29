@@ -2,18 +2,18 @@ Rails.application.routes.draw do
   scope '/api' do
     scope '/v1' do
       scope '/servers' do
-        # CRUD
+        resources :api_servers, only: [:new, :update]
         scope '/channels' do
-          # CRUD
+          resources :api_channels, only: [:new, :update]
           scope '/messages' do
-            # CRUD
+            resources :api_messages, only: [:new, :update]
           end
         end
       end
       scope '/users' do
-        # CRUD
+        resources :api_users, only: [:new, :update]
         scope '/memberships' do
-          # CRUD
+          resources :api_memberships, only: [:new, :update]
         end
       end
     end
