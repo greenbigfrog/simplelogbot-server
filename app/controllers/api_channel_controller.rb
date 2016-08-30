@@ -1,0 +1,2 @@
+class ApiChannelController < ApplicationController
+end

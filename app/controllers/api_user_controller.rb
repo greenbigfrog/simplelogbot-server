@@ -1,0 +1,2 @@
+class ApiUserController < ApplicationController
+end

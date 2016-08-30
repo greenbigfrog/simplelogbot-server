@@ -1,0 +1,2 @@
+class ApiMessageController < ApplicationController
+end

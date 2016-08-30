@@ -1,0 +1,2 @@
+module ApiMessageHelper
+end
