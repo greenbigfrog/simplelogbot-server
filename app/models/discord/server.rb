@@ -1,5 +1,5 @@
 module Discord
-  class Server < ApplicationRecord
+  class Discord::Server < ApplicationRecord
     has_many :memberships, inverse_of: :server
     has_many :users, through: :members
 

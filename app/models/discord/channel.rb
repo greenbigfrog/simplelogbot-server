@@ -1,5 +1,5 @@
 module Discord
-  class Channel < ApplicationRecord
+  class Discord::Channel < ApplicationRecord
     belongs_to :server
     has_many :messages
   end
