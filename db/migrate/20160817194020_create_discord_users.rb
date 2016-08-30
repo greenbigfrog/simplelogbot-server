@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration[5.0]
+class CreateDiscordUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table :users do |t|
+    create_table :discord_users do |t|
       t.string :username, null: false
       t.integer :user_id, null: false
       t.boolean :bot, null: false

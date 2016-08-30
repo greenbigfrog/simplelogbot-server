@@ -1,6 +1,6 @@
-class CreateServers < ActiveRecord::Migration[5.0]
+class CreateDiscordServers < ActiveRecord::Migration[5.0]
   def change
-    create_table :servers do |t|
+    create_table :discord_servers do |t|
       t.string :name, null: false
       t.integer :membercount, null: false
       t.integer :server_id, null: false
