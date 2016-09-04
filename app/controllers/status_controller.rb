@@ -1,5 +1,5 @@
 class StatusController < BaseApiController
-  def show
+  def update
     render  json: {status:"You have successfully connected to the API"}
   end
 end
