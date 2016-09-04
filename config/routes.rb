@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   scope '/api' do
     scope '/v1' do
+      get '/status' => 'status#show'
       scope '/servers' do
         resources :api_server, only: [:create, :update]
         scope '/channels' do
