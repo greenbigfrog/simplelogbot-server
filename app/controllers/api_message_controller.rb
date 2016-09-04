@@ -28,6 +28,6 @@ class ApiMessageController < BaseApiController
   private
   def find_message
     @message = Discord::Message.find_by_id(params[:id])
-    render nothing: true, status: :not_found unless @message.present?
+    render nothing: true, status: :not_found and return unless @message.present?
   end
 end

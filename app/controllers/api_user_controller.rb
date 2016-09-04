@@ -28,6 +28,6 @@ class ApiUserController < BaseApiController
   private
   def find_user
     @user = Discord::User.find_by_id(params[:id])
-    render nothing: true, status: :not_found unless @user.present?
+    render nothing: true, status: :not_found and return unless @user.present?
   end
 end

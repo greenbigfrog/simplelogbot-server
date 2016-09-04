@@ -28,6 +28,6 @@ class ApiChannelController < BaseApiController
   private
   def find_channel
     @channel = Discord::Channel.find_by_id(params[:id])
-    render nothing: true, status: :not_found unless @channel.present?
+    render nothing: true, status: :not_found and return unless @channel.present?
   end
 end

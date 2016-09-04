@@ -33,6 +33,6 @@ class ApiServerController < BaseApiController
   private
   def find_server
     @server = Discord::Server.find_by_id(params[:id])
-    render nothing: true, status: :not_found unless @server.present?
+    render nothing: true, status: :not_found and return unless @server.present?
   end
 end

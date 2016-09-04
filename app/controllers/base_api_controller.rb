@@ -1,4 +1,5 @@
 class BaseApiController < ApplicationController
+  require 'pry'
   acts_as_token_authentication_handler_for User
 
   before_filter :parse_request, :authenticate_user_from_token!

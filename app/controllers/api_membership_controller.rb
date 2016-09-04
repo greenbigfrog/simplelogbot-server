@@ -27,7 +27,7 @@ class ApiMembershipController < BaseApiController
 
   private
   def find_membership
-    @channel = Discord::Membership.find_by_id(params[:id])
-    render nothing: true, status: :not_found unless @membership.present?
+    @membership = Discord::Membership.find_by_id(params[:id])
+    render nothing: true, status: :not_found and return unless @membership.present?
   end
 end
