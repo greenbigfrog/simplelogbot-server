@@ -1,4 +1,4 @@
-class ApiUserController < ApplicationController
+class ApiUserController < BaseApiController
   before_filter :find_user, only: [:show, :update]
 
   before_filer only: :create do |c|

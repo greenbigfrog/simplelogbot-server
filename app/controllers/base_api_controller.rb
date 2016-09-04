@@ -16,7 +16,7 @@ class BaseApiController < ApplicationController
   end
 
   def parse_request
-    @json = Json.parse(request.body.read)
+    @json = JSON.parse(request.body.read)
   end
 
   def validate_json(condition)

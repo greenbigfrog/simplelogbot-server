@@ -1,4 +1,4 @@
-class ApiChannelController < ApplicationController
+class ApiChannelController < BaseApiController
   before_filter :find_channel, only: [:show, :update]
 
   before_filer only: :create do |c|

@@ -1,4 +1,4 @@
-class ApiMembershipController < ApplicationController
+class ApiMembershipController < BaseApiController
   before_filter :find_membership, only: [:show, :update]
 
   before_filer only: :create do |c|

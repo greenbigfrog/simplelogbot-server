@@ -1,4 +1,4 @@
-class ApiServerController < ApplicationController
+class ApiServerController < BaseApiController
   before_filter :find_server, only: [:show, :update]
 
   before_filter only: :create do |c|

@@ -1,4 +1,4 @@
-class ApiMessageController < ApplicationController
+class ApiMessageController < BaseApiController
   before_filter :find_message, only: [:show, :update]
 
   before_filer only: :create do |c|
