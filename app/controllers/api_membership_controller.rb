@@ -3,7 +3,7 @@ class ApiMembershipController < BaseApiController
 
   before_filer only: :create do |c|
     meth = c.method(:validate_json)
-    meth.call(@json.has_key?('membership') && @json['membership'].responds_to?(:[]) && @json['membership']['id'])
+    meth.call(@json.has_key?('membership') && @json['membership'].respond_to?(:[]) && @json['membership']['id'])
   end
 
   before_filter only: :update do |c|
@@ -13,7 +13,7 @@ class ApiMembershipController < BaseApiController
 
   before_filter only: :create do |c|
     meth = c.method(:check_existence)
-    meth.call(@membership, "Membership", "find_by_id(@json['project']['id'])")
+    meth.call(@membership, "Membership", "find_by_id(@json['membership']['id'])")
   end
 
   def create

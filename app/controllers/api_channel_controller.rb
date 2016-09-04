@@ -3,7 +3,7 @@ class ApiChannelController < BaseApiController
 
   before_filer only: :create do |c|
     meth = c.method(:validate_json)
-    meth.call(@json.has_key?('channel') && @json['channel'].responds_to?(:[]) && @json['channel']['id'])
+    meth.call(@json.has_key?('channel') && @json['channel'].respond_to?(:[]) && @json['channel']['id'])
   end
 
   before_filter only: :update do |c|
@@ -13,7 +13,7 @@ class ApiChannelController < BaseApiController
 
   before_filter only: :create do |c|
     meth = c.method(:check_existence)
-    meth.call(@channel, "Channel", "find_by_id(@json['project']['id'])")
+    meth.call(@channel, "Channel", "find_by_id(@json['channel']['id'])")
   end
 
   def create
