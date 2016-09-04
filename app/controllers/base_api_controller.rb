@@ -7,7 +7,7 @@ class BaseApiController < ApplicationController
   private
   def authenticate_user_from_token!
     if !@json['api_token']
-      render nothing: true, status: :unauthorized
+      render body: nil, status: :unauthorized
     else
       @user = nil
       User.find_each do |u|
@@ -24,16 +24,16 @@ class BaseApiController < ApplicationController
 
   def validate_json(condition)
     unless condition
-      render nothing: true, status: :bad_request
+      render body: nil, status: :bad_request
     end
   end
 
   def update_values(ivar, attributes)
     instance_variable_get(ivar).assign_attributes(attributes)
     if instance_variable_get(ivar).save
-      render nothing: true, status: :ok
+      render body: nil, status: :ok
     else
-      render nothing: true, status: :bad_request
+      render body: nil, status: :bad_request
     end
   end
 end

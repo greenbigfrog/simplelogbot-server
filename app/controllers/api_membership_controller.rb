@@ -1,12 +1,12 @@
 class ApiMembershipController < BaseApiController
-  before_filter :find_membership, only: [:show, :update]
+  before_action :find_membership, only: [:show, :update]
 
-  before_filter only: :create do |c|
+  before_action only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('membership') && @json['membership'].respond_to?(:[]) && @json['membership']['id'])
   end
 
-  before_filter only: :update do |c|
+  before_action only: :update do |c|
     meth = c.method(:validate_json)
     meth.call(@membership, "Discord::Membership", "find_by_id(@json['membership']['id'])")
   end
@@ -19,7 +19,7 @@ class ApiMembershipController < BaseApiController
 
   def create
     if @membership.present?
-      render nothing: true, status: :conflict
+      render body: nil, status: :conflict
     else
       @membership = Discord::Membership.new
       update_values :@membership, @json['membership']
@@ -29,6 +29,6 @@ class ApiMembershipController < BaseApiController
   private
   def find_membership
     @membership = Discord::Membership.find_by_id(params[:id])
-    render nothing: true, status: :not_found and return unless @membership.present?
+    render body: nil, status: :not_found and return unless @membership.present?
   end
 end

@@ -1,12 +1,12 @@
 class ApiChannelController < BaseApiController
-  before_filter :find_channel, only: [:show, :update]
+  before_action :find_channel, only: [:show, :update]
 
-  before_filter only: :create do |c|
+  before_action only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('channel') && @json['channel'].respond_to?(:[]) && @json['channel']['id'])
   end
 
-  before_filter only: :update do |c|
+  before_action only: :update do |c|
     meth = c.method(:validate_json)
     meth.call(@channel, "Discord::Channel", "find_by_id(@json['channel']['id'])")
   end
@@ -19,7 +19,7 @@ class ApiChannelController < BaseApiController
 
   def create
     if @channel.present?
-      render nothing: true, status: :conflict
+      render body: nil, status: :conflict
     else
       @channel = Discord::Channel.new
       update_values :@channel, @json['channel']
@@ -29,6 +29,6 @@ class ApiChannelController < BaseApiController
   private
   def find_channel
     @channel = Discord::Channel.find_by_id(params[:id])
-    render nothing: true, status: :not_found and return unless @channel.present?
+    render body: nil, status: :not_found and return unless @channel.present?
   end
 end

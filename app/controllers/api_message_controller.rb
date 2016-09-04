@@ -1,12 +1,12 @@
 class ApiMessageController < BaseApiController
-  before_filter :find_message, only: [:show, :update]
+  before_action :find_message, only: [:show, :update]
 
-  before_filter only: :create do |c|
+  before_action only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('message') && @json['message'].respond_to?(:[]) && @json['message']['id'])
   end
 
-  before_filter only: :update do |c|
+  before_action only: :update do |c|
     meth = c.method(:validate_json)
     meth.call(@message, "Message", "find_by_id(@json['message']['id'])")
   end
@@ -19,7 +19,7 @@ class ApiMessageController < BaseApiController
 
   def create
     if @message.present?
-      render nothing: true, status: :conflict
+      render body: nil, status: :conflict
     else
       @message = Discord::Message.new
       update_values :@message, @json['message']
@@ -29,6 +29,6 @@ class ApiMessageController < BaseApiController
   private
   def find_message
     @message = Discord::Message.find_by_id(params[:id])
-    render nothing: true, status: :not_found and return unless @message.present?
+    render body: nil, status: :not_found and return unless @message.present?
   end
 end
