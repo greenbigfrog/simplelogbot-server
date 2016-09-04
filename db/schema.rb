@@ -13,47 +13,47 @@
 ActiveRecord::Schema.define(version: 20160904102005) do
 
   create_table "discord_channels", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "channel_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                 null: false
+    t.integer  "channel_id", limit: 8, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "discord_memberships", force: :cascade do |t|
-    t.string   "display_name", null: false
-    t.integer  "member_id",    null: false
-    t.integer  "server_id",    null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "display_name",           null: false
+    t.integer  "member_id",    limit: 8, null: false
+    t.integer  "server_id",    limit: 8, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "discord_messages", force: :cascade do |t|
-    t.integer  "message_id", null: false
-    t.text     "content",    null: false
-    t.datetime "sent_at",    null: false
+    t.integer  "message_id", limit: 8, null: false
+    t.text     "content",              null: false
+    t.datetime "sent_at",              null: false
     t.datetime "edited_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "discord_servers", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "membercount", null: false
-    t.integer  "server_id",   null: false
-    t.integer  "owner_id",    null: false
-    t.integer  "icon_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",                  null: false
+    t.integer  "membercount",           null: false
+    t.integer  "server_id",   limit: 8, null: false
+    t.integer  "owner_id",    limit: 8, null: false
+    t.integer  "icon_id",     limit: 8, null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "discord_users", force: :cascade do |t|
-    t.string   "username",      null: false
-    t.integer  "user_id",       null: false
-    t.boolean  "bot",           null: false
-    t.string   "avatar_id",     null: false
-    t.integer  "discriminator", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "username",                null: false
+    t.integer  "user_id",       limit: 8, null: false
+    t.boolean  "bot",                     null: false
+    t.string   "avatar_id",     limit: 8, null: false
+    t.integer  "discriminator",           null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
