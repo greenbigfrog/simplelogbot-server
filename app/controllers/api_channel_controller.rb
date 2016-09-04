@@ -3,7 +3,7 @@ class ApiChannelController < BaseApiController
 
   before_action only: :create do |c|
     meth = c.method(:validate_json)
-    meth.call(@json.has_key?('channel') && @json['channel'].respond_to?(:[]) && @json['channel']['id'])
+    meth.call(@json.has_key?('channel') && @json['channel'].respond_to?(:[]) && @json['channel']['channel_id'])
   end
 
   before_action only: :update do |c|

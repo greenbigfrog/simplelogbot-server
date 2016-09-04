@@ -3,7 +3,7 @@ class ApiUserController < BaseApiController
 
   before_action only: :create do |c|
     meth = c.method(:validate_json)
-    meth.call(@json.has_key?('user') && @json['user'].respond_to?(:[]) && @json['user']['id'])
+    meth.call(@json.has_key?('user') && @json['user'].respond_to?(:[]) && @json['user']['user_id'])
   end
 
   before_action only: :update do |c|
