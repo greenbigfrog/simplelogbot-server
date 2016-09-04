@@ -48,4 +48,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-gem 'devise-token_authenticatable'
+gem 'simple_token_authentication'

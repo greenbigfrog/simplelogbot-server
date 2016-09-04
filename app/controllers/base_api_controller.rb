@@ -1,4 +1,6 @@
 class BaseApiController < ApplicationController
+  acts_as_token_authentication_handler_for User
+
   before_filter :parse_request, :authenticate_user_from_token!
 
   private
@@ -8,7 +10,7 @@ class BaseApiController < ApplicationController
     else
       @user = nil
       User.find_each do |u|
-        if Devise.secure_compare(u.api_token, @json['api_token'])
+        if Devise.secure_compare(u.authentication_token, @json['api_token'])
           @user = u
         end
       end
