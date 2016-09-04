@@ -27,7 +27,7 @@ class ApiChannelController < ApplicationController
 
   private
   def find_channel
-    @project = Discord::Channel.find_by_id(params[:id])
+    @channel = Discord::Channel.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @channel.present?
   end
 end

@@ -27,7 +27,7 @@ class ApiUserController < ApplicationController
 
   private
   def find_user
-    @project = Discord::User.find_by_id(params[:id])
+    @user = Discord::User.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @user.present?
   end
 end

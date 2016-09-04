@@ -1,7 +1,7 @@
 class ApiServerController < ApplicationController
   before_filter :find_server, only: [:show, :update]
 
-  before_filer only: :create do |c|
+  before_filter only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('server') && @json['server'].responds_to?(:[]) && @json['server']['id'])
   end
@@ -25,9 +25,14 @@ class ApiServerController < ApplicationController
     end
   end
 
+  def update
+    update_values :@server, @json['server']
+  end
+
+
   private
   def find_server
-    @project = Discord::Server.find_by_id(params[:id])
+    @server = Discord::Server.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @server.present?
   end
 end
