@@ -1,7 +1,7 @@
 class ApiChannelController < BaseApiController
   before_filter :find_channel, only: [:show, :update]
 
-  before_filer only: :create do |c|
+  before_filter only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('channel') && @json['channel'].respond_to?(:[]) && @json['channel']['id'])
   end

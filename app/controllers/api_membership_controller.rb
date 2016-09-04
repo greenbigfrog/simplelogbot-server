@@ -1,7 +1,7 @@
 class ApiMembershipController < BaseApiController
   before_filter :find_membership, only: [:show, :update]
 
-  before_filer only: :create do |c|
+  before_filter only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('membership') && @json['membership'].respond_to?(:[]) && @json['membership']['id'])
   end

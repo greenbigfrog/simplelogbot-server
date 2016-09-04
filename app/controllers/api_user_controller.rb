@@ -1,7 +1,7 @@
 class ApiUserController < BaseApiController
   before_filter :find_user, only: [:show, :update]
 
-  before_filer only: :create do |c|
+  before_filter only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('user') && @json['user'].respond_to?(:[]) && @json['user']['id'])
   end

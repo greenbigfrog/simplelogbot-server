@@ -1,7 +1,7 @@
 class ApiMessageController < BaseApiController
   before_filter :find_message, only: [:show, :update]
 
-  before_filer only: :create do |c|
+  before_filter only: :create do |c|
     meth = c.method(:validate_json)
     meth.call(@json.has_key?('message') && @json['message'].respond_to?(:[]) && @json['message']['id'])
   end
