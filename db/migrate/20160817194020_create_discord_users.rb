@@ -5,7 +5,7 @@ class CreateDiscordUsers < ActiveRecord::Migration[5.0]
       t.string :username, null: false
       t.integer :user_id, null: false, limit: 8
       t.boolean :bot, null: false
-      t.string :avatar_id, null: false, limit: 8
+      t.string :avatar_id, limit: 8
       t.integer :discriminator, null: false
 
       t.timestamps
