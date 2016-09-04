@@ -36,8 +36,4 @@ class BaseApiController < ApplicationController
       render nothing: true, status: :bad_request
     end
   end
-
-  def check_existence(ivar, object, finder)
-    instance_variable_set(ivar, instance_eval(object+"."+finder))
-  end
 end

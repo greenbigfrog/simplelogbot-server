@@ -11,9 +11,10 @@ class ApiUserController < BaseApiController
     meth.call(@user, "Discord::User", "find_by_id(@json['user']['id'])")
   end
 
-  before_filter only: :create do |c|
-    meth = c.method(:check_existence)
-    meth.call(@user, "Discord::User", "find_by_id(@json['user']['id'])")
+  before_action :set_user, only: :create
+
+  def set_user
+    @server = Discord::User.find_by(server_id: @json['user']['id'])
   end
 
   def create

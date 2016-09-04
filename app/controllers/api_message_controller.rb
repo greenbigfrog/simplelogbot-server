@@ -11,9 +11,10 @@ class ApiMessageController < BaseApiController
     meth.call(@message, "Message", "find_by_id(@json['message']['id'])")
   end
 
-  before_filter only: :create do |c|
-    meth = c.method(:check_existence)
-    meth.call(@message, "Message", "find_by_id(@json['message']['id'])")
+  before_action :set_message, only: :create
+
+  def set_message
+    @message = Discord::Message.find_by(message_id: @json['message']['id'])
   end
 
   def create

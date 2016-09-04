@@ -11,9 +11,10 @@ class ApiMembershipController < BaseApiController
     meth.call(@membership, "Discord::Membership", "find_by_id(@json['membership']['id'])")
   end
 
-  before_filter only: :create do |c|
-    meth = c.method(:check_existence)
-    meth.call(@membership, "Discord::Membership", "find_by_id(@json['membership']['id'])")
+  before_action :set_membership, only: :create
+
+  def set_membership
+    @membership = Discord::Membership.find_by(server_id: @json['membership']['server_id'], user_id: @json['membership']['user_id'])
   end
 
   def create

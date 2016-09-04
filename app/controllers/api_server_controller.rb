@@ -11,9 +11,10 @@ class ApiServerController < BaseApiController
     meth.call(@server, "Discord::Server", "find_by id(@json['server']['id'])")
   end
 
-  before_filter only: :create do |c|
-    meth = c.method(:check_existence)
-    meth.call(@server, "Discord::Server", "find_by server_id: @json['server']['id']")
+  before_action :set_server, only: :create
+
+  def set_server
+    @server = Discord::Server.find_by(server_id: @json['server']['id'])
   end
 
   def create
