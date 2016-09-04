@@ -8,12 +8,12 @@ class ApiChannelController < BaseApiController
 
   before_filter only: :update do |c|
     meth = c.method(:validate_json)
-    meth.call(@channel, "Channel", "find_by_id(@json['channel']['id'])")
+    meth.call(@channel, "Discord::Channel", "find_by_id(@json['channel']['id'])")
   end
 
   before_filter only: :create do |c|
     meth = c.method(:check_existence)
-    meth.call(@channel, "Channel", "find_by_id(@json['channel']['id'])")
+    meth.call(@channel, "Discord::Channel", "find_by_id(@json['channel']['id'])")
   end
 
   def create
