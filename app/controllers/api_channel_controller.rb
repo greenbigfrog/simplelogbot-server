@@ -20,14 +20,14 @@ class ApiChannelController < ApplicationController
     if @channel.present?
       render nothing: true, status: :conflict
     else
-      @channel = Channel.new
+      @channel = Discord::Channel.new
       update_values :@channel, @json['channel']
     end
   end
 
   private
   def find_channel
-    @project = Channel.find_by_id(params[:id])
+    @project = Discord::Channel.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @channel.present?
   end
 end

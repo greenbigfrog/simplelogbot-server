@@ -20,14 +20,14 @@ class ApiUserController < ApplicationController
     if @user.present?
       render nothing: true, status: :conflict
     else
-      @user = User.new
+      @user = Discord::User.new
       update_values :@user, @json['user']
     end
   end
 
   private
   def find_user
-    @project = User.find_by_id(params[:id])
+    @project = Discord::User.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @user.present?
   end
 end

@@ -20,14 +20,14 @@ class ApiMessageController < ApplicationController
     if @message.present?
       render nothing: true, status: :conflict
     else
-      @message = Message.new
+      @message = Discord::Message.new
       update_values :@message, @json['message']
     end
   end
 
   private
   def find_message
-    @project = Message.find_by_id(params[:id])
+    @project = Discord::Message.find_by_id(params[:id])
     render nothing: true, status: :not_found unless @message.present?
   end
 end
