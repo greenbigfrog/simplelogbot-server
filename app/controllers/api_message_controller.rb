@@ -8,13 +8,13 @@ class ApiMessageController < BaseApiController
 
   before_action only: :update do |c|
     meth = c.method(:validate_json)
-    meth.call(@message, "Message", "find_by_id(@json['message']['id'])")
+    meth.call(@message, "Message", "find_by_id(@json['message']['message_id'])")
   end
 
   before_action :set_message, only: :create
 
   def set_message
-    @message = Discord::Message.find_by(message_id: @json['message']['id'])
+    @message = Discord::Message.find_by(message_id: @json['message']['message_id'])
   end
 
   def create

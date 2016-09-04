@@ -8,13 +8,13 @@ class ApiServerController < BaseApiController
 
   before_action only: :update do |c|
     meth = c.method(:validate_json)
-    meth.call(@server, "Discord::Server", "find_by id(@json['server']['id'])")
+    meth.call(@server, "Discord::Server", "find_by id(@json['server']['server_id'])")
   end
 
   before_action :set_server, only: :create
 
   def set_server
-    @server = Discord::Server.find_by(server_id: @json['server']['id'])
+    @server = Discord::Server.find_by(server_id: @json['server']['server_id'])
   end
 
   def create
