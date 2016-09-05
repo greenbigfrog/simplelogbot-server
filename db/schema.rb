@@ -15,24 +15,26 @@ ActiveRecord::Schema.define(version: 20160904102005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "discord_channels", force: :cascade do |t|
+  create_table "discord_channels", id: false, force: :cascade do |t|
     t.string   "status",     null: false
     t.string   "name",       null: false
     t.bigint   "channel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_discord_channels_on_channel_id", unique: true, using: :btree
   end
 
-  create_table "discord_memberships", force: :cascade do |t|
+  create_table "discord_memberships", id: false, force: :cascade do |t|
     t.string   "status",       null: false
     t.string   "display_name", null: false
     t.bigint   "member_id",    null: false
     t.bigint   "server_id",    null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["member_id"], name: "index_discord_memberships_on_member_id", unique: true, using: :btree
   end
 
-  create_table "discord_messages", force: :cascade do |t|
+  create_table "discord_messages", id: false, force: :cascade do |t|
     t.string   "status",     null: false
     t.bigint   "message_id", null: false
     t.text     "content",    null: false
@@ -40,9 +42,10 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.datetime "edited_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_discord_messages_on_message_id", unique: true, using: :btree
   end
 
-  create_table "discord_servers", force: :cascade do |t|
+  create_table "discord_servers", id: false, force: :cascade do |t|
     t.string   "status",      null: false
     t.string   "name",        null: false
     t.integer  "membercount", null: false
@@ -51,9 +54,10 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.bigint   "icon_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["server_id"], name: "index_discord_servers_on_server_id", unique: true, using: :btree
   end
 
-  create_table "discord_users", force: :cascade do |t|
+  create_table "discord_users", id: false, force: :cascade do |t|
     t.string   "status",                  null: false
     t.string   "username",                null: false
     t.bigint   "user_id",                 null: false
@@ -62,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.integer  "discriminator",           null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index ["user_id"], name: "index_discord_users_on_user_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
