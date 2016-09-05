@@ -12,48 +12,51 @@
 
 ActiveRecord::Schema.define(version: 20160904102005) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "discord_channels", force: :cascade do |t|
-    t.string   "status",               null: false
-    t.string   "name",                 null: false
-    t.integer  "channel_id", limit: 8, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "status",     null: false
+    t.string   "name",       null: false
+    t.bigint   "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "discord_memberships", force: :cascade do |t|
-    t.string   "status",                 null: false
-    t.string   "display_name",           null: false
-    t.integer  "member_id",    limit: 8, null: false
-    t.integer  "server_id",    limit: 8, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "status",       null: false
+    t.string   "display_name", null: false
+    t.bigint   "member_id",    null: false
+    t.bigint   "server_id",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "discord_messages", force: :cascade do |t|
-    t.string   "status",               null: false
-    t.integer  "message_id", limit: 8, null: false
-    t.text     "content",              null: false
-    t.datetime "sent_at",              null: false
+    t.string   "status",     null: false
+    t.bigint   "message_id", null: false
+    t.text     "content",    null: false
+    t.datetime "sent_at",    null: false
     t.datetime "edited_at"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "discord_servers", force: :cascade do |t|
-    t.string   "status",                null: false
-    t.string   "name",                  null: false
-    t.integer  "membercount",           null: false
-    t.integer  "server_id",   limit: 8, null: false
-    t.integer  "owner_id",    limit: 8, null: false
-    t.integer  "icon_id",     limit: 8
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "status",      null: false
+    t.string   "name",        null: false
+    t.integer  "membercount", null: false
+    t.bigint   "server_id",   null: false
+    t.bigint   "owner_id",    null: false
+    t.bigint   "icon_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "discord_users", force: :cascade do |t|
     t.string   "status",                  null: false
     t.string   "username",                null: false
-    t.integer  "user_id",       limit: 8, null: false
+    t.bigint   "user_id",                 null: false
     t.boolean  "bot",                     null: false
     t.string   "avatar_id",     limit: 8
     t.integer  "discriminator",           null: false
@@ -75,9 +78,9 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "authentication_token",   limit: 30
-    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
