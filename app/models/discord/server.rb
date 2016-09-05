@@ -4,5 +4,7 @@ module Discord
     has_many :users, through: :memberships
 
     has_many :channels
+
+    self.primary_key = 'server_id'
   end
 end
