@@ -1,5 +1,6 @@
 class BaseApiController < ApplicationController
   acts_as_token_authentication_handler_for User
+  protect_from_forgery with: :null_session
 
   before_action :parse_request
   before_action :authenticate_user_from_token!
