@@ -13,7 +13,6 @@ class CreateDiscordMessages < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :discord_messages, :channel_id, unique: true
-    add_index :discord_messages, :user_id, unique: true
+    add_index :discord_messages, :message_id, unique: true
   end
 end

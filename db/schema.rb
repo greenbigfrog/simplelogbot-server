@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.bigint   "server_id",    null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_discord_memberships_on_user_id", unique: true, using: :btree
   end
 
   create_table "discord_messages", id: false, force: :cascade do |t|
@@ -45,8 +44,7 @@ ActiveRecord::Schema.define(version: 20160904102005) do
     t.datetime "edited_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["channel_id"], name: "index_discord_messages_on_channel_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_discord_messages_on_user_id", unique: true, using: :btree
+    t.index ["message_id"], name: "index_discord_messages_on_message_id", unique: true, using: :btree
   end
 
   create_table "discord_servers", id: false, force: :cascade do |t|

@@ -8,7 +8,5 @@ class CreateDiscordMemberships < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-
-    add_index :discord_memberships, :user_id, unique: true
   end
 end
