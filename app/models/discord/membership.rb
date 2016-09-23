@@ -3,7 +3,7 @@ module Discord
     belongs_to :server, inverse_of: :memberships
     belongs_to :user, inverse_of: :memberships
 
-    def ensure_membership(user_id, server_id)
+    def self.ensure_membership(user_id, server_id)
       # After checking if a user exists, we still need to make sure, that a Membership exists for the user on the Server
       # the message came from exists
       @membership = Discord::Membership.find_by(user_id: user_id, server_id: server_id)
