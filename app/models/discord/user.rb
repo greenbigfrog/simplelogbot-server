@@ -10,7 +10,7 @@ module Discord
       @user = Discord::User.find_by(user_id: user_id)
       #  We need to make sure that a User exists in our database, before adding a message to our DB
       unless @user
-        user = JSON.parse(Discordrb::API::User.resolve(ENV['TOKEN'], user_id)).except("avatar")
+        user = JSON.parse(Discordrb::API::User.resolve(ENV['TOKEN'], user_id))
         @user = Discord::User.new
         @user.assign_attributes(user)
         @user.status = 'active'
