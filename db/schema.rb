@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 20160904102005) do
   create_table "discord_memberships", id: false, force: :cascade do |t|
     t.string   "status",       null: false
     t.string   "display_name", null: false
-    t.bigint   "member_id",    null: false
+    t.bigint   "user_id",      null: false
     t.bigint   "server_id",    null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["member_id"], name: "index_discord_memberships_on_member_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_discord_memberships_on_user_id", unique: true, using: :btree
   end
 
   create_table "discord_messages", id: false, force: :cascade do |t|
