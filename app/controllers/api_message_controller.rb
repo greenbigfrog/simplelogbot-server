@@ -21,7 +21,7 @@ class ApiMessageController < BaseApiController
 
   def ensure
     Discord::User.ensure_user(@json['message']['user_id'])
-    #Discord::Membership.ensure_membership(@json['message']['user_id'], @json['message']['server_id'])
+    Discord::Membership.ensure_membership(@json['message']['user_id'], @json['message']['server_id'])
   end
 
   def create
