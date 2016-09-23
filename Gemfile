@@ -52,3 +52,9 @@ gem 'devise'
 gem 'simple_token_authentication'
 # Debugging tools
 gem 'pry'
+
+# ENV stuff
+gem 'dotenv'
+
+# Discord related stuff
+gem 'discordrb'

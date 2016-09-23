@@ -17,6 +17,9 @@ class ApiMessageController < BaseApiController
     @message = Discord::Message.find_by(message_id: @json['message']['message_id'])
   end
 
+  before_action Discord::User.ensure_user(@json['message']['user_id']), only: :create
+  before_action Discord::Membership.ensure_membership(@json['message']['user_id'], @json['message']['server_id']), only: :create
+
   def create
     if @message.present?
       render body: nil, status: :conflict
